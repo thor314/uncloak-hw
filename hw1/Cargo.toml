@@ -28,7 +28,7 @@ rand = { version = "0.8" }
 # tylift = "0.3.5"       # type macro, lift enum variants into types
 
 # Error Handling
-# anyhow   ="1.0"
+anyhow   ="1.0"
 # thiserror="1.0"
 
 # Logging
