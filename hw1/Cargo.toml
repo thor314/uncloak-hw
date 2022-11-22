@@ -1,0 +1,59 @@
+[package]
+authors    =["thor <thorck@protonmail.com>"]
+description=""""""
+edition    ="2021"
+license    ="Unlicense OR MIT"
+name       ="uncloak-hw"
+repository ="https://github.com/thor314/uncloak-hw"
+version    ="0.1.0"
+
+[dependencies]
+rsa = "0.7.2"
+# Common
+# itertools = "0.10.3" # danielkeep.github.io/itercheat_baked.html
+# cfg-if = "1.0.0" # branching compilation logic
+# serde = { version = "1", features = ["derive"] }
+# serde_json = { version = "1.0" }
+rand = { version = "0.8" }
+# https://rhai.rs/book/start/features.html
+# rhai = { version = "1.8.0" } # scripting lanugage, yeet
+# validator = { version = "0.15", features = ["derive"]}
+
+# Occasionally useful convenience macros and APIs
+# cute = "0.3"           # python-like list comprehensions: c!
+# delegate = "0.7.0"     # macro to forward method calls to inner types
+# kiam = "0.1.1"         # macro for prettier conditionals: when!
+# rayon = "1.5.3"        # speeding parallel processing of Iterators
+# tap =  "1.0.1"         # {tap,pipe} combinator ownership plumbing utils
+# tylift = "0.3.5"       # type macro, lift enum variants into types
+
+# Error Handling
+# anyhow   ="1.0"
+# thiserror="1.0"
+
+# Logging
+# log = "0.4" 
+# env_logger = "0.9" # Your dependencies start here
+
+# [features]
+# some_feature = ["dep:serde","dep:serde_json"] # use this to use optional dependencies
+
+[dev-dependencies]
+# Bench
+criterion = "0.3"
+iai = "0.1" # criterion alternative
+
+# Testing utils
+# arbitrary = { version = "1.1", features = ["derive"] } # see quickcheck
+# test-log = "0.2"        # log/tracing independent test-log consumer
+# quickcheck = "1.0"      # lowkey proptest suite
+# quickcheck_macros = "1" # derive 
+# rstest = "0.15"         # testing convenience proc-macros
+
+# [[test]]
+# name = "integration"
+# path = "tests/tests.rs"
+
+[[bench]]
+name = "bench"
+harness = false
