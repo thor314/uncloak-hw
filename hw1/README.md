@@ -1,2 +1,2 @@
 # Solutions to hw1
-https://hackmd.io/@thor314/rkrNNl_Is
+See: https://uncloak.org/courses/rust+cryptography+engineering/course-HW+1+Solutions
