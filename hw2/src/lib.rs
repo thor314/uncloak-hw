@@ -23,13 +23,18 @@ mod ch3 {
 
   /// demonstrate DES complementation
   fn q10_complementation(key: &[u8], p: &[u8]) -> (Vec<u8>, Vec<u8>) {
-    let kk = key.into_iter().map(|v| !v).collect();
-    let pp = p.into_iter().map(|v| !v).collect();
+    let kk = key.iter().map(|v| !v).collect();
+    let pp = p.iter().map(|v| !v).collect();
     (kk, pp)
   }
 
   #[cfg(test)]
   mod tests3 {
+    use aes::{cipher::BlockEncrypt, Block};
+    use aes_gcm::KeyInit;
+    use des::Des;
+    use generic_array::GenericArray;
+
     use super::*;
     #[test]
     fn testy_test3() {
@@ -44,13 +49,32 @@ mod ch3 {
       println!("3.9 plaintext: {p9:?}\nciphertext: {c9:?}");
       assert_eq!(p9.to_vec(), q8_openssl_decrypt(key, &*c9).unwrap());
 
+      // 3.10
       // denote the complement of x to be x'.
       // does e(k,p) = e(k',p')'?
-      let key = b"\x01\x02\x03\x04\x05\x06\x07\x00";
-      let p = b"\x01\x02\x03\x04\x05\x06\x07\x00";
-      let iv = b"\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07";
+      use generic_array::typenum::consts::U8;
+      let key = [1u8, 2, 3, 4, 1, 3, 8, 3];
+      let key: &GenericArray<u8, U8> = GenericArray::from_slice(&key);
+      // let p = "an8bitky".as_bytes();
+      let p = [1u8, 4, 3, 8, 1, 3, 3, 4];
+      let p = GenericArray::from_slice(&p);
+      let mut c = [0u8; 8];
+      let mut c = GenericArray::from_mut_slice(&mut c);
+      let des = Des::new_from_slice(key).unwrap();
+      des.encrypt_block_b2b(p, c);
 
-      // msg needs a padding but I'm feeling lazy, shrugsies 🇺🇲
+      let (kk, pp) = q10_complementation(key, p);
+      let pp = GenericArray::from_slice(&pp);
+      let des = Des::new_from_slice(&kk).unwrap();
+      let mut cc = [0u8; 8];
+      let mut cc = GenericArray::from_mut_slice(&mut cc);
+
+      des.encrypt_block_b2b(pp, cc);
+      let cc_cmp: Vec<u8> = cc.into_iter().map(|v| !*v).collect();
+      assert_eq!(c.to_vec(), cc_cmp.to_vec());
+
+      // OpenSSL doesn't expose this function, or at least not with any clear error, so use another
+      // crate msg needs a padding but I'm feeling lazy, shrugsies 🇺🇲
       // thread 'ch3::tests3::testy_test3' panicked at 'called `Result::unwrap()` on an `Err` value:
       // ErrorStack([Error { code: 50856204, library: "digital envelope routines", function:
       // "inner_evp_generic_fetch", reason: "unsupported", file: "../crypto/evp/evp_fetch.c", line:
@@ -78,7 +102,7 @@ mod ch4 {
     assert!(msg.len() < 256);
     let msg_len = msg.len() as u8;
     match msg_len {
-      255 =>  panic!("message length must be < 255"),
+      255 => panic!("message length must be < 255"),
       1..=254 => {
         let pad = 255 - msg_len;
         let pad_arr = vec![pad; pad as usize];
@@ -94,9 +118,7 @@ mod ch4 {
   /// check whether padding length is correct
   fn pkcs7_validate(pm: &PaddedMessage) -> anyhow::Result<()> {
     let a: Vec<&u8> = pm.msg.iter().rev().take(2).collect();
-    if a[0] != a[1] && a[0] == &1{
-      Ok(())
-    } else if pm.msg.iter().rev().take(*a[0] as usize).all(|x| x == a[0]) {
+    if pm.msg.iter().rev().take(*a[0] as usize).all(|x| x == a[0]) {
       Ok(())
     } else {
       Err(anyhow::anyhow!("yikes! padding error"))
@@ -122,7 +144,7 @@ mod ch4 {
       }
     }
     #[test]
-    #[should_panic(expected = "source slice length")]
+    #[should_panic(expected = "message length must be")]
     fn testy4_panic() {
       try_pad!(0, 255);
     }

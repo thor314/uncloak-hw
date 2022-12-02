@@ -33,6 +33,7 @@ generic-array = "0.14.6"
 anyhow   ="1.0"
 aes = "0.8.2"
 openssl = "0.10.43"
+des = "0.8.1"
 # thiserror="1.0"
 
 # Logging
