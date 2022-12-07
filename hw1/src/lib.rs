@@ -15,7 +15,6 @@ pub struct RSA {
   pub pub_key:  RsaPublicKey,
 }
 
-st''
 impl RSA {
   pub fn new() -> Self {
     let priv_key =
@@ -41,7 +40,6 @@ impl RSA {
 }
 
 pub mod vignere {
-  #[x]
   #[derive(Clone, Debug)]
   pub struct Vignere<'a> {
     key: &'a [u8],

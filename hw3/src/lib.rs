@@ -7,7 +7,7 @@ mod ch5_ring {
 
   const BYTES: usize = 2;
 
-  /// Truncate the output of SHA3-512(message) to n bits
+  /// Truncate the output of SHA-512(message) to n bits
   fn sha_512_n(m: &[u8], n_bytes: usize) -> Vec<u8> {
     assert!((1..=8).contains(&n_bytes));
     let mut ctx = digest::Context::new(&digest::SHA512);
@@ -15,7 +15,7 @@ mod ch5_ring {
     ctx.finish().as_ref()[..n_bytes].to_vec()
   }
 
-  /// write a birthday attack on SHA3-512-n; see benches for timings
+  /// write a birthday attack on SHA-512-n; see benches for timings
   fn exercise5_3(n_bytes: usize) -> (usize, usize) {
     assert!((1..=8).contains(&n_bytes));
 

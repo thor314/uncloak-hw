@@ -42,12 +42,12 @@ mod ch3 {
       let c = b"\x53\x9B\x33\x3B\x39\x70\x6D\x14\x90\x28\xCF\xE1\xD9\xD4\xA4\x07";
       let p = q8_openssl_decrypt(key, c).unwrap();
       println!("3.8 plaintext: {p:?}\nciphertext: {c:?}");
-      assert_eq!(c.to_vec(), q9_openssl_encrypt(key, &*p).unwrap());
+      assert_eq!(c.to_vec(), q9_openssl_encrypt(key, &p).unwrap());
 
       let p9 = b"\x29\x6C\x93\xFD\xF4\x99\xAA\xEB\x41\x94\xBA\xBC\x2E\x63\x56\x1D";
       let c9 = q9_openssl_encrypt(key, p9).unwrap();
       println!("3.9 plaintext: {p9:?}\nciphertext: {c9:?}");
-      assert_eq!(p9.to_vec(), q8_openssl_decrypt(key, &*c9).unwrap());
+      assert_eq!(p9.to_vec(), q8_openssl_decrypt(key, &c9).unwrap());
 
       // 3.10
       // denote the complement of x to be x'.
@@ -59,7 +59,7 @@ mod ch3 {
       let p = [1u8, 4, 3, 8, 1, 3, 3, 4];
       let p = GenericArray::from_slice(&p);
       let mut c = [0u8; 8];
-      let mut c = GenericArray::from_mut_slice(&mut c);
+      let c = GenericArray::from_mut_slice(&mut c);
       let des = Des::new_from_slice(key).unwrap();
       des.encrypt_block_b2b(p, c);
 
@@ -67,7 +67,7 @@ mod ch3 {
       let pp = GenericArray::from_slice(&pp);
       let des = Des::new_from_slice(&kk).unwrap();
       let mut cc = [0u8; 8];
-      let mut cc = GenericArray::from_mut_slice(&mut cc);
+      let cc = GenericArray::from_mut_slice(&mut cc);
 
       des.encrypt_block_b2b(pp, cc);
       let cc_cmp: Vec<u8> = cc.into_iter().map(|v| !*v).collect();
