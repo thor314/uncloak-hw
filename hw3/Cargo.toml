@@ -1,0 +1,15 @@
+[package]
+authors    =["thor <thorck@protonmail.com>"]
+license    ="Unlicense OR MIT"
+name = "hw3"
+version = "0.1.0"
+repository ="https://github.com/thor314/uncloak-hw"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
+hex = "0.4.1"
+ring = "0.16.20"
+itertools = "0.10.5"
