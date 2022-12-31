@@ -17,7 +17,7 @@ tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] } # You
 
 # Common
 # itertools = "0.10.3" # danielkeep.github.io/itercheat_baked.html
-# cfg-if = "1.0.0" # branching compilation logic
+cfg-if = "1.0.0" # branching compilation logic
 # serde = { version = "1", features = ["derive"] }
 # serde_json = { version = "1.0" }
 # rand = { version = "0.8" }
@@ -29,7 +29,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] } # You
 # kiam = "0.1.1"         # macro for prettier conditionals: when!
 # rayon = "1.5.3"        # speeding parallel processing of Iterators
 # tap =  "1.0.1"         # {tap,pipe} combinator ownership plumbing utils
-# tylift = "0.3.5"       # type macro, lift enum variants into types
+tylift = "0.3.5"       # type macro, lift enum variants into types
+once_cell = "1.17.0"
 
 # Async dependencies
 # TF are lightweight, faster compiling, less unsafe alternatives to futures/tokio.
@@ -49,10 +50,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] } # You
 # merge-streams = "0.1.2" # merge streams into a single Stream
 # pin-project = "1.0.11" # projection of a Pin from struct to fields, useful when implementing polling
 
-# Logging
-
-# [features]
-# some_feature = ["dep:serde","dep:serde_json"] # use this to use optional dependencies
+[features]
+mal = []
 
 [dev-dependencies]
 
