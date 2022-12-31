@@ -1,5 +1,3 @@
-use std::array;
-
 use ring::aead::{self, BoundKey, Nonce, NonceSequence};
 
 struct Counter {
@@ -36,14 +34,3 @@ pub fn ring_encrypt_aead_gcm(m: &mut [u8; 12]) -> Vec<u8> {
 }
 
 pub fn add(left: usize, right: usize) -> usize { left + right }
-
-#[cfg(test)]
-mod tests {
-  use super::*;
-
-  #[test]
-  fn test_ring_aead() {
-    let mut m = [0; 12];
-    let out = ring_encrypt_aead_gcm(&mut m);
-  }
-}
