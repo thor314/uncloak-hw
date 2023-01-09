@@ -687,6 +687,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "hw6"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arbitrary",
+ "cfg-if",
+ "criterion 0.3.6",
+ "generic-array",
+ "once_cell",
+ "quickcheck",
+ "quickcheck_macros",
+ "rand",
+ "rand_chacha",
+ "rstest",
+ "test-log",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+ "tylift",
+ "typenum",
+]
+
+[[package]]
 name = "iai"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1510,9 +1533,9 @@ dependencies = [
 
 [[package]]
 name = "typenum"
-version = "1.15.0"
+version = "1.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
+checksum = "497961ef93d974e23eb6f433eb5fe1b7930b659f06d12dec6fc44a8f554c0bba"
 
 [[package]]
 name = "uncloak-hw"
