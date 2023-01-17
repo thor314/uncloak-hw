@@ -10,6 +10,8 @@ version    ="0.1.0"
 [dependencies]
 # Error Handling
 anyhow   ="1.0"
+num = {version = "0.4.0", features = ["rand"] } 
+rand = "0.8.5"
 thiserror="1.0"
 # Logging
 tracing = "0.1"
