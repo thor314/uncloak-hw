@@ -710,6 +710,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "hw7"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arbitrary",
+ "criterion 0.3.6",
+ "quickcheck",
+ "quickcheck_macros",
+ "rstest",
+ "test-log",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "iai"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
