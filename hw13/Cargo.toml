@@ -68,6 +68,3 @@ quickcheck = "1.0"      # lowkey proptest suite
 quickcheck_macros = "1" # derive 
 rstest = "0.16"         # testing convenience proc-macros
 
-[[bench]]
-name = "bench"
-harness = false
