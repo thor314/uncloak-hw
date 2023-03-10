@@ -70,6 +70,3 @@ quickcheck = "1.0"      # lowkey proptest suite
 quickcheck_macros = "1" # derive 
 rstest = "0.15"         # testing convenience proc-macros
 
-[[test]]
-name = "integration"
-path = "tests/tests.rs"
